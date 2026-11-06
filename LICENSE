@@ -1,0 +1,101 @@
+CYBLINGE – Proprietäre kommerzielle Softwarelizenz
+Shopware Connector für ERPNext
+Fassung vom 18.10.2026
+
+Copyright (c) 2026 CYBLINGE. Alle Rechte vorbehalten, soweit nachfolgend
+nicht ausdrücklich eingeräumt oder gesetzlich vorgesehen.
+
+1. Geltungsbereich
+
+Diese Bedingungen gelten für den von CYBLINGE unter dieser Lizenz
+bereitgestellten Shopware Connector für ERPNext einschließlich des zugehörigen
+Quellcodes und der Dokumentation (zusammen „Software“). Die Bereitstellung
+oder Einsichtnahme in den Quellcode räumt keine Open-Source-Lizenz ein.
+Gesonderte Vereinbarungen mit CYBLINGE haben Vorrang vor diesen Bedingungen.
+
+2. Kostenloser Umfang und kostenpflichtiges Nutzungsrecht
+
+CYBLINGE gestattet die kostenlose Nutzung für insgesamt bis zu zwanzig
+Bestellimporte von Shopware nach ERPNext oder Artikelsynchronisationen
+zwischen ERPNext und Shopware pro Installation (Frappe-Site) und
+Kalendermonat, gemessen in UTC. Beide Vorgangsarten teilen sich dieses
+Kontingent; übertragene Artikelvarianten zählen jeweils als Artikel.
+Nicht verbrauchtes Kontingent wird nicht in Folgemonate übertragen.
+Dieser kostenlose Umfang erfordert eine ausdrückliche Free-Aktivierung und
+ist auf die ersten sechs Kalendermonate ab der ersten Installation beschränkt.
+Die Frist endet am entsprechenden UTC-Zeitpunkt sechs Kalendermonate später;
+fehlt der Tag im Zielmonat, gilt dessen letzter Tag. Eine spätere Aktivierung,
+Neuaktivierung oder erneute Installation verlängert diese Frist nicht.
+Für den kostenlosen Umfang innerhalb dieser Frist ist kein Kauf nötig.
+Nach Fristende ist unabhängig vom Monatsverbrauch immer eine aktive
+kostenpflichtige Lizenz mit gültigem Lizenzschlüssel erforderlich.
+Das Nutzungsrecht ist einfach und auf eigene Geschäftszwecke beschränkt.
+Die übrigen Bedingungen dieser Lizenz gelten auch für die kostenlose Nutzung.
+
+Vorgänge werden vor der Ausführung auf das Kontingent reserviert.
+Wiederholungsversuche desselben Vorgangs mit unveränderten Daten verbrauchen
+innerhalb desselben Monats keinen weiteren Platz. Bei Fehlern mit unklarem
+Verarbeitungsergebnis bleibt die Reservierung bestehen; nachweislich ohne
+Schreibeffekt übersprungene neue Vorgänge geben ihre Reservierung frei.
+
+Eine Nutzung über diesen kostenlosen Umfang hinaus setzt den Erwerb einer
+kostenpflichtigen Lizenz von CYBLINGE
+und die Zahlung der vertraglich geschuldeten Lizenzgebühren voraus.
+Der Lizenznehmer erhält ein einfaches, im Rahmen der gesetzlichen Vorgaben
+nicht übertragbares und nicht unterlizenzierbares Recht, die Software für
+seine eigenen Geschäftszwecke im vereinbarten Umfang zu installieren und
+zu betreiben. Preis, Zahlungsbedingungen, Laufzeit, freigeschaltete Funktionen
+sowie zulässige Instanzen und Domains ergeben sich aus dem jeweiligen
+Angebot, der Bestellung oder dem Lizenzvertrag mit CYBLINGE.
+Allein der Download, der Besitz des Quellcodes oder die technische
+Funktionsfähigkeit begründen kein über den kostenlosen Umfang hinausgehendes
+Nutzungsrecht.
+
+3. Beschränkungen
+
+Ohne vorherige ausdrückliche schriftliche Zustimmung von CYBLINGE ist es vorbehaltlich
+der Abschnitte 4 und 5 insbesondere nicht gestattet,
+
+- die Software oder Teile davon über die für die erlaubte Installation
+  und Nutzung erforderlichen Kopien hinaus zu vervielfältigen;
+- die Software oder ihren Quellcode an Dritte weiterzugeben, zu
+  veröffentlichen, zu verkaufen, zu vermieten oder unterzulizenzieren;
+- die Software zu ändern, zu bearbeiten, abgeleitete Fassungen zu erstellen
+  oder ihren Code in andere Produkte zu übernehmen;
+- die Software zu dekompilieren, zu disassemblieren oder durch Reverse
+  Engineering zu untersuchen;
+- Lizenzprüfungen, Aktivierungen, Instanzbindungen oder andere technische
+  Lizenzbeschränkungen zu entfernen, zu verändern oder zu umgehen;
+- Urheberrechts-, Eigentums- oder Lizenzhinweise zu entfernen oder zu ändern.
+
+Diese Beschränkungen gelten auch, wenn die Handlungen mithilfe von
+KI-Systemen, Code-Assistenten oder anderen automatisierten Werkzeugen
+ausgeführt werden. Insbesondere darf geschützter Quellcode ohne diese
+schriftliche Erlaubnis nicht durch KI-Agenten kopiert, verändert oder neu
+geschrieben werden; die Ausnahmen der Abschnitte 4 und 5 bleiben erhalten.
+
+4. Erlaubte Handlungen und zwingendes Recht
+
+Die bestimmungsgemäße Konfiguration über die vorgesehenen Einstellungen
+und Schnittstellen sowie die Installation von durch CYBLINGE bereitgestellten
+Updates im Rahmen des vereinbarten Nutzungsrechts sind gestattet.
+Für Installation und Betrieb im lizenzierten Umfang erforderliche Kopien
+sind erlaubt. Zwingende gesetzliche Rechte bleiben unberührt, insbesondere
+die Rechte auf erforderliche Sicherungskopien, auf Beobachten, Untersuchen
+und Testen sowie auf Dekompilierung zur Herstellung der Interoperabilität
+unter den jeweiligen gesetzlichen Voraussetzungen (§§ 69d, 69e und 69g UrhG).
+Die Beschränkungen dieser Lizenz gelten nur, soweit sie gesetzlich zulässig
+sind. Sie begründen keine Einschränkungen zwingender gesetzlicher Rechte.
+
+5. Komponenten Dritter
+
+Komponenten Dritter unterliegen ihren jeweiligen Lizenzbedingungen.
+Diese Bedingungen schränken die daraus folgenden Rechte nicht ein.
+Lizenz- und Urheberrechtshinweise solcher Komponenten bleiben erhalten.
+
+6. Weitere Vertragsbedingungen
+
+Regelungen zu Support, Wartung, Updates, Gewährleistung, Haftung und
+Vertragsbeendigung ergeben sich aus dem jeweiligen Vertrag und dem
+anwendbaren Recht. Diese Lizenz enthält keinen pauschalen Ausschluss
+gesetzlicher Gewährleistungs- oder Haftungsansprüche.

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RC8 installieren, Shopware 6 und ERPNext konfigurieren und den Synchronisationsbetrieb einrichten.">
+  <meta name="color-scheme" content="light dark">
+  <title>RC8 – Installation und Bedienung</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #f6f8fb;
+      --surface: #fff;
+      --text: #172231;
+      --muted: #44546a;
+      --accent: #145c75;
+      --accent-soft: #e7f2f5;
+      --border: #c5d0dc;
+      --code: #edf1f5;
+      font: 1.0625rem/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #111827;
+        --surface: #1b2736;
+        --text: #f0f4f8;
+        --muted: #c2ceda;
+        --accent: #8bd1e1;
+        --accent-soft: #203946;
+        --border: #46566a;
+        --code: #111a25;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--background); color: var(--text); }
+    a { color: var(--accent); text-underline-offset: .16em; }
+    a:focus-visible, code:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .skip { position: absolute; left: -10000px; top: .5rem; padding: .5rem .75rem; background: var(--surface); z-index: 2; }
+    .skip:focus { left: .5rem; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .wrap { width: min(100% - 2rem, 74rem); margin-inline: auto; }
+    .hero { padding-block: clamp(2rem, 6vw, 4.5rem); }
+    .eyebrow { margin: 0 0 .5rem; color: var(--muted); font-size: .95rem; font-weight: 650; letter-spacing: .035em; }
+    h1, h2, h3 { line-height: 1.2; text-wrap: balance; }
+    h1 { max-width: 18ch; margin: 0; font-size: clamp(2rem, 5vw, 3.25rem); }
+    .intro { max-width: 68ch; margin: 1rem 0 0; color: var(--muted); font-size: 1.12rem; }
+    nav { padding-block: 1rem; border-bottom: 1px solid var(--border); }
+    nav ul { display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; margin: 0; padding: 0; list-style: none; }
+    nav a { display: inline-block; padding-block: .35rem; }
+    main { padding-block: 1.5rem 4rem; }
+    section { margin-block: 2.5rem; scroll-margin-top: 1rem; }
+    h2 { margin: 0 0 1rem; font-size: clamp(1.45rem, 3vw, 2rem); }
+    h3 { margin: 1.5rem 0 .5rem; font-size: 1.2rem; }
+    p { max-width: 76ch; }
+    li + li { margin-top: .35rem; }
+    .note { max-width: 76ch; padding: .9rem 1rem; border-left: .3rem solid var(--accent); background: var(--accent-soft); }
+    .steps { padding-left: 1.4rem; }
+    .fields { display: grid; grid-template-columns: minmax(11rem, .8fr) minmax(0, 2fr); margin: 1rem 0; border-top: 1px solid var(--border); }
+    .fields dt, .fields dd { margin: 0; padding: .75rem .65rem; border-bottom: 1px solid var(--border); }
+    .fields dt { font-weight: 680; }
+    .fields dd { color: var(--muted); }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    code { padding: .08em .3em; border-radius: .2rem; background: var(--code); overflow-wrap: anywhere; }
+    pre { max-width: 100%; padding: 1rem; overflow-x: auto; border: 1px solid var(--border); border-radius: .45rem; background: var(--code); line-height: 1.55; }
+    pre code { padding: 0; background: transparent; }
+    .scroll-table { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    caption { padding: .5rem; text-align: left; font-weight: 680; }
+    th, td { padding: .65rem; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th { background: var(--accent-soft); }
+    footer { padding-block: 1.5rem 2.5rem; border-top: 1px solid var(--border); color: var(--muted); }
+    @media (max-width: 42rem) {
+      .wrap { width: min(100% - 1.25rem, 74rem); }
+      .fields { grid-template-columns: 1fr; }
+      .fields dt { padding-bottom: .15rem; border-bottom: 0; }
+      .fields dd { padding-top: .1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#inhalt">Zum Inhalt</a>
+  <header>
+    <div class="wrap hero">
+      <p class="eyebrow">Shopware 6 · ERPNext 16</p>
+      <h1>RC8 installieren und bedienen</h1>
+      <p class="intro">Diese Anleitung führt durch die Installation in einer bestehenden ERPNext-Bench, die Einrichtung des Shopware-Plugins und die wichtigsten Synchronisations- und Betriebsoptionen.</p>
+    </div>
+  </header>
+  <nav class="wrap" aria-label="Inhaltsübersicht">
+    <ul>
+      <li><a href="#voraussetzungen">Voraussetzungen</a></li>
+      <li><a href="#erpnext">ERPNext installieren</a></li>
+      <li><a href="#shopware">Shopware einrichten</a></li>
+      <li><a href="#einstellungen">Synchronisation einstellen</a></li>
+      <li><a href="#webhook">Order-Webhook</a></li>
+      <li><a href="#betrieb">Betrieb und Fehlerbehebung</a></li>
+    </ul>
+  </nav>
+  <main id="inhalt" class="wrap">
+    <section id="voraussetzungen" aria-labelledby="voraussetzungen-title">
+      <h2 id="voraussetzungen-title">Voraussetzungen</h2>
+      <ul>
+        <li>Eine bestehende ERPNext-16-Site in einer Bench und Administratorzugriff auf ERPNext und Shopware.</li>
+        <li>Für das beschriebene Profil: ERPNext 16.50.0, Frappe 16.51.0, Python 3.14, Shopware 6.7.14.2 und PHP 8.4.26. Für andere unterstützte Kombinationen müssen App, Plugin und Abhängigkeitsprofil zusammenpassen.</li>
+        <li>Für Website Items wird die ERPNext-App <code>webshop</code> benötigt. Die hier beschriebene Währung ist EUR.</li>
+        <li>Shopware API-Zugang, ERPNext API-Zugang sowie Firma, Lager, Preislisten und Buchungszuordnungen, die zu Ihrer Umgebung passen.</li>
+        <li>Der technische Connector-Zugang wird über <a href="https://hello.cyblinge.de/">hello.cyblinge.de</a> eingerichtet. Ein Lizenzschlüssel ersetzt die Installationseinrichtung nicht. Zugangswerte ausschließlich in den dafür vorgesehenen geschützten Feldern speichern.</li>
+      </ul>
+      <p class="note">App, Shopware-Plugin und Abhängigkeitsprofil aus derselben RC8-Ausgabe verwenden. Vorhandene Site-Daten und Konfiguration bleiben in der bestehenden Site.</p>
+    </section>
+
+    <section id="erpnext" aria-labelledby="erpnext-title">
+      <h2 id="erpnext-title">ERPNext-App installieren oder aktualisieren</h2>
+      <ol class="steps">
+        <li>Laden Sie die ERPNext-App und das passende Shopware-Plugin aus derselben Ausgabe. Prüfen Sie die zugehörigen Prüfsummen und Signaturen gemäß dem <a href="https://shopwarexerpnext.cyblinge.de/rc8/20261106/customer-manifest.json">RC8-Kundenmanifest</a>.</li>
+        <li>Stellen Sie den Ordner <code>shopware_connector</code> in der bestehenden Bench unter <code>apps/shopware_connector</code> bereit.</li>
+        <li>Installieren Sie mit der vorhandenen Bench-Python-Umgebung die gehashten Abhängigkeiten und die App:</li>
+      </ol>
+      <pre><code>uv pip install --python env/bin/python --require-hashes -r apps/shopware_connector/profiles/erpnext16-dependencies.lock
+uv pip install --python env/bin/python --no-deps --no-build-isolation -e apps/shopware_connector
+bench --site &lt;site&gt; list-apps</code></pre>
+      <p>Bei einer neuen Site installieren Sie die App einmal:</p>
+      <pre><code>bench --site &lt;site&gt; install-app shopware_connector</code></pre>
+      <p>Bei einer bereits installierten App diesen Installationsschritt überspringen. Führen Sie danach für neue Installationen und Updates aus:</p>
+      <pre><code>bench --site &lt;site&gt; migrate
+bench --site &lt;site&gt; clear-cache
+bench build --app shopware_connector</code></pre>
+      <p>Nach dem Build müssen die Bench-Webprozesse, Hintergrundworker und der ERPNext-Scheduler die aktualisierte App verwenden. Laden Sie die ERPNext-Oberfläche nach dem Cachewechsel neu.</p>
+    </section>
+
+    <section aria-labelledby="paketauswahl-title">
+      <h2 id="paketauswahl-title">Andere Paketvarianten</h2>
+      <p>Für ERPNext 15 verwenden Sie Python 3.11 und die Datei <code>profiles/erpnext15-dependencies.lock</code> aus dem ERPNext-15-Paket anstelle des ERPNext-16-Profils. App und Abhängigkeiten müssen zur bestehenden Bench passen.</p>
+      <p>Für Shopware 5 verwenden Sie das Plugin <code>CyblingeStockFence5</code> im Verzeichnis <code>custom/plugins/CyblingeStockFence5</code>. Aktualisieren und installieren Sie es im Shopware-Verzeichnis:</p>
+      <pre><code>php bin/console sw:plugin:refresh
+php bin/console sw:plugin:install --activate CyblingeStockFence5</code></pre>
+      <p>Wählen Sie in ERPNext <strong>Shopware Version = 5</strong> und hinterlegen Sie Shopware-URL, API-Benutzer und API-Schlüssel in den dafür vorgesehenen Feldern. Der in dieser Anleitung beschriebene signierte Order-Webhook-Sender ist für Shopware 6 vorgesehen.</p>
+    </section>
+
+    <section id="shopware" aria-labelledby="shopware-title">
+      <h2 id="shopware-title">Shopware-6-Plugin installieren</h2>
+      <ol class="steps">
+        <li>Stellen Sie das Plugin <code>CyblingeStockFence</code> aus derselben RC8-Ausgabe im Shopware-Pluginverzeichnis bereit.</li>
+        <li>Aktualisieren Sie die Pluginliste und den Cache:</li>
+      </ol>
+      <pre><code>php bin/console plugin:refresh
+php bin/console cache:clear</code></pre>
+      <ol class="steps" start="3">
+        <li>Öffnen Sie im Shopware Admin <strong>Erweiterungen → Meine Erweiterungen</strong> und installieren und aktivieren Sie <code>CyblingeStockFence</code>.</li>
+        <li>Bei einem Plugin-Update deaktivieren und aktivieren Sie das Plugin nach dem Dateiaustausch erneut. Die Aktivierung ergänzt fehlende Schutzdatensätze für bereits vorhandene Produkte und ändert deren Bestand nicht.</li>
+        <li>Weisen Sie dem ERP-Connector-Konto neben den benötigten Produkt-, Kunden- und Bestellrechten die Rechte <code>cyblinge_stock_fence:read</code> und <code>cyblinge_stock_fence:write</code> zu.</li>
+      </ol>
+      <p>Verwenden Sie die Admin-Assets aus demselben Pluginpaket. Laden Sie den Shopware Admin nach dem Cachewechsel neu.</p>
+      <p>Bei HTTP 403 prüfen Sie die Shopware-Rolle. Bei HTTP 409 lösen Sie den angezeigten Bestandskonflikt; schalten Sie den Bestandszaun nicht ab, um ihn zu umgehen.</p>
+    </section>
+
+    <section id="einstellungen" aria-labelledby="einstellungen-title">
+      <h2 id="einstellungen-title">Verbindung und Synchronisationsrichtung einstellen</h2>
+      <p>Öffnen Sie in ERPNext <strong>Shopware Settings</strong> und tragen Sie die Shopware-URL sowie den API-Zugang in die vorgesehenen Passwortfelder ein. Wählen Sie <strong>Shopware Version = 6</strong>, eine Firma, einen Konfliktmodus und die erforderlichen Zuordnungen. Speichern Sie und laden Sie das Formular erneut, um die gespeicherten Werte zu prüfen.</p>
+      <p>Öffnen Sie außerdem <strong>License Settings</strong>, tragen Sie Ihren Lizenzschlüssel im geschützten Feld <strong>License Token</strong> ein und führen Sie die angezeigte Aktivierung aus. Kontrollieren Sie anschließend <strong>Activation Status</strong>. Für die kostenlose Nutzung verwenden Sie die dafür angebotene Aktivierung.</p>
+      <dl class="fields">
+        <dt>Sync Direction</dt>
+        <dd>Wählen Sie die benötigte Richtung für die jeweiligen Daten. Die Einstellung definiert nicht pauschal die Führung jedes Artikelfelds, Kundenfelds oder Bestellstatus.</dd>
+        <dt>Customer Group</dt>
+        <dd>Ordnen Sie die Shopware-Kundengruppen ERPNext-Kundengruppen zu und wählen Sie bei Bedarf eine Standardgruppe für nicht zugeordnete Gruppen.</dd>
+        <dt>Automatic Shopware to ERP Item Delta Sync Enabled</dt>
+        <dd>Für einen einmaligen manuellen Artikelimport deaktiviert lassen. Laufende Artikel-Deltas nur einschalten, wenn Shopware der gewünschte Artikel-Quellprozess ist.</dd>
+        <dt>Stock Sync Enabled</dt>
+        <dd>Nur bei gewünschtem Bestandstransfer aktivieren. Die unterstützte Richtung ist ausschließlich <strong>ERP to Shopware</strong>. Wählen Sie das maßgebliche ERPNext-Lager; ein Lager am Website Item hat Vorrang vor dem allgemeinen Fallback.</dd>
+        <dt>Sync Interval (Minutes)</dt>
+        <dd>Mindestabstand geplanter Artikel-, Kunden- und Bestellabrufe; Standard ist 15 Minuten.</dd>
+        <dt>Stock Sync Interval (Minutes)</dt>
+        <dd>Separater Mindestabstand für den Bestandsabgleich; maßgeblich, wenn Bestandssynchronisation eingeschaltet ist.</dd>
+        <dt>Queue Processing Interval (Minutes)</dt>
+        <dd>Unabhängiger Mindestabstand für fällige Queue-Arbeit: 1 bis 1440 Minuten, Standard ist 1 Minute.</dd>
+      </dl>
+      <p>Vor Bestellimporten richten Sie unter <strong>Commercial Accounting Mappings</strong> die zuständigen Konten, Steuern, Versand- und Anpassungsartikel ein. Für Shopware-Bruttopreisfälle benötigt das Feld <strong>Sales Order Item → rate → Precision</strong> mindestens 6 Stellen. Ändern Sie dafür nicht die globale Währungspräzision. Prüfen Sie kontenweite ERPNext-Optionen wie Rundung und negative Artikelraten mit Ihrer Buchhaltung, bevor Sie sie siteweit aktivieren.</p>
+      <p>Importierte Aufträge bleiben standardmäßig Entwürfe. Automatisches Einreichen und kaufmännische Folgebelege sollten erst aktiviert werden, wenn Konten, Steuern, Versand und Rabatte zu Ihrer Buchhaltung passen.</p>
+      <p>Wenn Shopware den bestehenden Produktkatalog führt, verwenden Sie in <strong>Shopware Settings → Manual Initial Item Import</strong> den einmaligen Shopware-Artikelimport. Website Item muss in ERPNext verfügbar sein. Für den einmaligen Import lassen Sie den laufenden Artikel-Deltaimport ausgeschaltet. Wenn Sie stattdessen den vollständigen Startabgleich für konfigurierte Entitäten und Richtungen verwenden, wählen Sie unter <strong>Actions</strong> die Schaltfläche <strong>Einmaliger vollständiger Erstabgleich</strong> und bestätigen Sie den Start.</p>
+    </section>
+
+    <section id="webhook" aria-labelledby="webhook-title">
+      <h2 id="webhook-title">Shopware-Order-Webhook und Verzögerung</h2>
+      <p>Der Webhook nimmt signierte Shopware-6-Orderänderungen entgegen. Sie brauchen dazu keinen separaten App-Registrierungsdienst. Shopware sendet über seinen normalen asynchronen Worker; ERPNext prüft die Signatur und stellt die Bestellung für die Queue ein.</p>
+      <h3>Shopware vorbereiten</h3>
+      <ol class="steps">
+        <li>Legen Sie in der geschützten Shopware-Laufzeitumgebung die freigegebene HTTPS-Empfängeradresse in <code>CYBLINGE_RC8_ORDER_WEBHOOK_ALLOWED_URL</code> fest.</li>
+        <li>Verweisen Sie <code>CYBLINGE_RC8_ORDER_WEBHOOK_SECRET_FILE</code> auf eine eigene, absolute Secretdatei, die dem Shopware-Dienstkonto gehört und ausschließlich für dieses Konto lesbar ist (Dateimodus <code>0600</code>). Tragen Sie den geheimen Inhalt weder in die GUI noch in Befehlszeilen oder normale Konfiguration ein.</li>
+        <li>Verwenden Sie den nativen Shopware-Async-Transport <code>doctrine://default?auto_setup=false</code> oder <code>auto_setup=0</code> und stellen Sie sicher, dass ein Worker die Queue <code>async</code> verarbeitet.</li>
+        <li>Öffnen Sie <strong>Erweiterungen → Meine Erweiterungen → CyblingeStockFence → Konfigurieren</strong>. Tragen Sie unter <strong>Freigegebene ERPNext-Empfänger-URL</strong> exakt dieselbe HTTPS-Adresse ein und speichern Sie.</li>
+      </ol>
+      <p>Setzen Sie <code>APP_URL</code> in der Shopware-Laufzeit auf die kanonische Shop-Origin, die auch in ERPNext verwendet wird. Lassen Sie den Empfänger und den Sender eingeschaltet; unsignierte Webhooks werden abgewiesen.</p>
+      <h3>ERPNext konfigurieren</h3>
+      <ol class="steps">
+        <li>Geben Sie als Empfänger die HTTPS-Adresse Ihrer ERPNext-Site mit dem Pfad <code>/api/method/shopware_connector.webhooks.receive_shopware_webhook</code> an.</li>
+        <li>Aktivieren Sie <strong>Shopware Webhook Ingestion Enabled</strong> und tragen Sie denselben HMAC-Schlüssel in das geschützte Passwortfeld <strong>Shopware Webhook Secret</strong> ein. Bewahren Sie den Schlüssel geschützt auf und geben Sie ihn nicht an Dritte weiter.</li>
+        <li>Stellen Sie sicher, dass <strong>Sync Direction</strong> eingehende Daten von Shopware nach ERPNext zulässt.</li>
+        <li>Wählen Sie <strong>Order Import Source = Webhook only</strong> und setzen Sie <strong>Order Webhook Delay (Minutes)</strong> auf 0 bis 10080 Minuten.</li>
+      </ol>
+      <p class="note"><strong>Wichtig:</strong> Webhook only setzt automatischen Order-Polling und Order-Reconciliation aus. Kunden-, Artikel- und ERPNext-Orderexporte behalten ihre eigenen Einstellungen. Die Verzögerung beginnt beim authentifizierten Empfang und gilt für neu eingereihte Ereignisse. Vorhandene Queueeinträge werden nicht umdatiert. Die Verarbeitung erfolgt frühestens nach der Verzögerung und beim nächsten verfügbaren Scheduler-/Cron- und Worker-Lauf; eine sekundengenaue Startzeit ist nicht garantiert.</p>
+      <p>Eine Verzögerung größer als 0 ist nur mit <strong>Webhook only</strong> möglich. Wenn Sie wieder auf Polling wechseln, setzen Sie die Verzögerung zuerst auf 0. Der Webhook verarbeitet Ordererstellung und -änderungen; Löschereignisse werden von diesem Empfänger nicht als Orderimport verarbeitet.</p>
+    </section>
+
+    <section id="betrieb" aria-labelledby="betrieb-title">
+      <h2 id="betrieb-title">Zeitplan, erste Synchronisation und Fehlerbehebung</h2>
+      <h3>Auslöser wählen</h3>
+      <dl class="fields">
+        <dt>Sync Polling Trigger = ERPNext Scheduled Job</dt>
+        <dd>Standardmodus. Der ERPNext-Scheduler stößt Abruf, Bestand und fällige Queuearbeit an. Scheduler und Hintergrundworker müssen dauerhaft laufen.</dd>
+        <dt>Sync Polling Trigger = External Cronjob</dt>
+        <dd>Automatische Connector-Syncjobs werden durch den Scheduler nicht ausgeführt. Rufen Sie den Site-Befehl im Bench-Verzeichnis mit dem richtigen Bench-Benutzer auf.</dd>
+      </dl>
+      <pre><code>bench --site &lt;site&gt; execute shopware_connector.scheduler.run_cron_sync</code></pre>
+      <p>Planen Sie den Befehl über den System-Cron Ihrer Umgebung unter dem vorgesehenen Bench-Benutzer; ein Aufruf pro Minute ist ein geeignetes Grundintervall. Der Befehl ist ein lokaler Bench-Aufruf und kein HTTP-Endpunkt. Er beachtet die gespeicherten Mindestintervalle, Pausen, Berechtigungen und Sperren. Auch im Cronmodus müssen ERPNext-Queueworker laufen.</p>
+      <h3>Erste Abgleiche</h3>
+      <ol class="steps">
+        <li>Prüfen Sie Verbindung, Firma, Preislisten, Kundengruppen, Lager und Kontenzuordnungen.</li>
+        <li>Starten Sie den ersten Import über die normale ERPNext-Oberfläche. Vergleichen Sie die Quell- und Zielwerte der Felder, die Sie übertragen möchten.</li>
+        <li>Prüfen Sie danach in <strong>Sync Queue</strong> und im <strong>Scheduled Job Log</strong>, ob die Arbeit abgeschlossen wurde. Ein Queue-Eintrag mit Status <code>Completed</code> ersetzt nicht den Abgleich der benötigten Zielfelder.</li>
+        <li>Bei Bestandsabgleich kontrollieren Sie zuerst ein ausgewähltes Lager und den ERPNext-Istbestand. Für Shopware-Storno und Retouren konfigurieren Sie zusätzlich die gewünschte <strong>Return Fallback Strategy</strong>:</li>
+      </ol>
+      <div class="scroll-table">
+        <table>
+          <caption>Wirkung der Return Fallback Strategy</caption>
+          <thead><tr><th scope="col">Auswahl</th><th scope="col">Wirkung bei fehlender Retourenmenge</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">None</th><td>Keine mengenmäßige Rückbuchung aus dem Status allein.</td></tr>
+            <tr><th scope="row">Full</th><td>Bei vollständigem Retourenstatus die noch nicht zurückgebuchte Bestellmenge.</td></tr>
+            <tr><th scope="row">Percent</th><td>Der eingestellte Anteil der Bestellmenge; bereits gebuchte Rückmengen werden berücksichtigt.</td></tr>
+            <tr><th scope="row">Refund Amount Ratio</th><td>Abgeleitete Menge auf Basis erkannter Erstattungsbeträge. Das erstellt keine Zahlungserstattung.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Fehler eingrenzen</h3>
+      <ul>
+        <li><strong>Webhook wird abgewiesen:</strong> Prüfen Sie, ob der Webhook in ERPNext eingeschaltet ist, beide geschützten HMAC-Schlüssel übereinstimmen und die Shopware-Origin korrekt eingerichtet ist. Schalten Sie die Signaturprüfung nicht ab.</li>
+        <li><strong>403 in Shopware:</strong> Prüfen Sie die Integration-Rolle und ihre erforderlichen Bestandszaun-Rechte.</li>
+        <li><strong>Queue wird nicht verarbeitet:</strong> Prüfen Sie Scheduler-Modus, Pausen, Scheduler-Prozess, Worker, Queue-Intervall und Job-Logs. „Last Enqueued“ bedeutet, dass Arbeit eingereiht wurde; es ist kein Abschlussstatus.</li>
+        <li><strong>Verzögerte Order erscheint später:</strong> Der eingestellte Zeitraum ist eine früheste Fälligkeit. Scheduler/Cron und Worker können die Verarbeitung nach diesem Zeitpunkt starten.</li>
+        <li><strong>Konflikt oder Zuordnungsfehler:</strong> Korrigieren Sie die Zuordnung in ERPNext oder Shopware und verarbeiten Sie den Vorgang über die vorgesehene Oberfläche erneut. Ändern Sie Queue-Status und verknüpfte IDs nicht direkt.</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">RC8 · Shopware 6 und ERPNext 16</div>
+  </footer>
+</body>
+</html>

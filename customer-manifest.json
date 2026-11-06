@@ -1,0 +1,51 @@
+{
+  "artifacts": [
+    {
+      "bytes": 512134,
+      "name": "CYBLINGE-Connector-RC8-20261106-2-ERPNext15.zip",
+      "sha256": "9195af4017168a91550c92dd99352ca0e86aa48d4011822b5ad8767a0488770e",
+      "url": "https://shopwarexerpnext.cyblinge.de/rc8/20261106-2/CYBLINGE-Connector-RC8-20261106-2-ERPNext15.zip"
+    },
+    {
+      "bytes": 512134,
+      "name": "CYBLINGE-Connector-RC8-20261106-2-ERPNext16.zip",
+      "sha256": "8877f5b85b20d69f42998959f246410735d5f3160899d5f31b2decd782a4599a",
+      "url": "https://shopwarexerpnext.cyblinge.de/rc8/20261106-2/CYBLINGE-Connector-RC8-20261106-2-ERPNext16.zip"
+    },
+    {
+      "bytes": 25654,
+      "name": "CYBLINGE-Connector-RC8-20261106-2-Shopware5.zip",
+      "sha256": "23dff8edae426a2536ff66ce1ea5a8b41f4e91c3b0296f9f06427853ac778456",
+      "url": "https://shopwarexerpnext.cyblinge.de/rc8/20261106-2/CYBLINGE-Connector-RC8-20261106-2-Shopware5.zip"
+    },
+    {
+      "bytes": 35678,
+      "name": "CYBLINGE-Connector-RC8-20261106-2-Shopware6.zip",
+      "sha256": "fb8b4948cfc5dc8c09bed3082d2dcbfbd0addea082d6264245752edaddd65784",
+      "url": "https://shopwarexerpnext.cyblinge.de/rc8/20261106-2/CYBLINGE-Connector-RC8-20261106-2-Shopware6.zip"
+    },
+    {
+      "bytes": 10646,
+      "name": "CYBLINGE-Connector-RC8-20261106-2-Anleitung.zip",
+      "sha256": "c1c7c2f29e5631a389a8bd6738eab025beac05ddcaf194afac8375313dfff2f5",
+      "url": "https://shopwarexerpnext.cyblinge.de/rc8/20261106-2/CYBLINGE-Connector-RC8-20261106-2-Anleitung.zip"
+    },
+    {
+      "bytes": 1004382,
+      "name": "CYBLINGE-Connector-RC8-20261106-2-Komplettpaket.zip",
+      "sha256": "e76781e8fef1e967c8a035a99949e2aaf3c20cf7579fffbc8fad02385089af9b",
+      "url": "https://shopwarexerpnext.cyblinge.de/rc8/20261106-2/CYBLINGE-Connector-RC8-20261106-2-Komplettpaket.zip"
+    }
+  ],
+  "build": "20261106-2",
+  "currency_scope": [
+    "EUR"
+  ],
+  "distribution_kind": "release-candidate",
+  "guide": "Anleitung/ANLEITUNG.html",
+  "license": "proprietary; see LICENSE",
+  "public_key_fingerprint": "2DE1BF092F707918281B45BB8EC5765FCFA9E804",
+  "schema": "cyblinge.connector.customer-download.v1",
+  "signature_meaning": "Authenticity and file integrity only.",
+  "version": "1.0.0rc8"
+}
